@@ -81,9 +81,9 @@ int main(void)
 EOF
 
 # Compile main
-g++-11 -std=c++2a -fmodules-ts -fmodule-mapper=mapper.txt -c main.cpp
+$cc $cflags -c main.cpp
 
 # Link everything together
-g++-11 -std=c++2a -fmodules-ts -fmodule-mapper=mapper.txt mod_moo/moo.o mod_quack/quack.o main.o -o main
+$cc $cflags mod_moo/moo.o mod_quack/quack.o main.o -o main
 
 # EOF
