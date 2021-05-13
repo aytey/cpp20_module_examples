@@ -20,8 +20,9 @@ module_paths="-fprebuilt-module-path=."
 
 # Generate our 'moo' module
 cd mod_moo
-unit=moo
-$cc $cflags $mod_flags $module_paths -c $unit.cpp -o $unit.pcm
+module=moo
+unit=mod_$module
+$cc $cflags $mod_flags $module_paths -c $unit.cpp -o $module.pcm
 $cc $cflags $module_paths -c $unit.cpp -o $unit.o
 module_paths="$module_paths -fprebuilt-module-path=$(pwd)"
 cd ..
@@ -29,8 +30,9 @@ cd ..
 
 # Generate our 'quack' module
 cd mod_quack
-unit=quack
-$cc $cflags $mod_flags $module_paths -c $unit.cpp -o $unit.pcm
+module=quack
+unit=mod_$module
+$cc $cflags $mod_flags $module_paths -c $unit.cpp -o $module.pcm
 $cc $cflags $module_paths -c $unit.cpp -o $unit.o
 module_paths="$module_paths -fprebuilt-module-path=$(pwd)"
 cd ..
@@ -40,7 +42,7 @@ cd ..
 $cc $cflags $module_paths -c main.cpp
 
 # Link everything together
-$cc $cflags mod_moo/moo.o mod_quack/quack.o main.o -o main
+$cc $cflags mod_moo/mod_moo.o mod_quack/mod_quack.o main.o -o main
 
 
 # Run our binary

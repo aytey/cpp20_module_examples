@@ -31,16 +31,18 @@ cd ..
 
 # Generate our 'moo' module
 cd mod_moo
-unit=moo
-echo "$unit $(readlink -f $unit.so.gcm)" >> ../mapper.txt
+module=moo
+unit=mod_$module
+echo "$module $(readlink -f $unit.so.gcm)" >> ../mapper.txt
 $cc $cflags -x c++ -c $unit.cpp
 cd ..
 
 
 # Generate our 'quack' module
 cd mod_quack
-unit=quack
-echo "$unit $(readlink -f $unit.so.gcm)" >> ../mapper.txt
+module=quack
+unit=mod_$module
+echo "$module $(readlink -f $unit.so.gcm)" >> ../mapper.txt
 $cc $cflags -x c++ -c $unit.cpp
 cd ..
 
@@ -49,7 +51,7 @@ cd ..
 $cc $cflags -c main.cpp
 
 # Link everything together
-$cc $cflags mod_moo/moo.o mod_quack/quack.o main.o -o main
+$cc $cflags mod_moo/mod_moo.o mod_quack/mod_quack.o main.o -o main
 
 
 # Run our binary
