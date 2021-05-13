@@ -5,7 +5,7 @@
 
 ## Purpose
 
-This repository collects together some C++ source files and some simple build scripts that demonstrate how to work with modules. The code is purposefully structure to have both self-contained and non-self-contained modules in different directories. The purpose of the build scripts are to be able to build each module *in its own directory* and then provide enough information to the compiler to locate the binary module files.
+This repository collects together some C++ source files and some simple build scripts that demonstrate how to work with modules. The code is purposefully structured to have both self-contained and non-self-contained modules in different directories. The purpose of the build scripts are to be able to build each module *in its own directory* and then provide enough information to the compiler to locate the binary module files.
 
 
 ## Compilers
@@ -103,7 +103,7 @@ Both `gcc` and `clang` support ["imported header files"](https://docs.microsoft.
 
 Additionally, `gcc` *does not* support imported header files, **without** first generating the the binary module for these headers **explicitly**; `clang` does not need you to generate the files upfront, but you *do* need to have `libc++` installed.
 
-When working with standard library modules in Visual Studio, these are loaded from `<cl version>/ifc/<arch>/<build type>/<module>.ifc` (e.g., `visual_studio/MSVC/14.28.29910/ifc/x64/Debug/std.memory.ifc`).
+When working with standard library modules in Visual Studio, these are loaded from `<cl version>/ifc/<arch>/<build type>/<module>.ifc` (e.g., `visual_studio/MSVC/14.28.29910/ifc/x64/Debug/std.memory.ifc`). If you do not have the IFC files installed, then you cannot `import core` with MSVC -- I think this means there's no easy way to get the "original" files (== non-binary equivalents) for MSVC.
 
 When working with imported header files in `clang`, these get resolved by the file `/usr/include/c++/v1/module.modulemap` -- *note* this is a `libc++` file!
 
