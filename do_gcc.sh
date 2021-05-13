@@ -18,7 +18,9 @@ mapper=$(readlink -f mapper.txt)
 
 # What's our compiler + flags?
 cc="g++-11"
-cflags="-fmodules-ts -std=c++20 -fmodule-mapper=$mapper"
+error_flags="-Wall -Wextra -Wpedantic -Werror"
+mod_flags="-fmodules-ts -fmodule-mapper=$mapper"
+cflags="$error_flags $mod_flags -std=c++20"
 
 # Generate modules for our system headers
 rm -rf sys_inc

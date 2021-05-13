@@ -11,7 +11,9 @@ cd $root
 
 # What's our compiler + flags?
 cc="clang++-12"
-cflags="-Wall -Werror -std=c++20 -stdlib=libc++ -fmodules"
+error_flags="-Wall -Wextra -Wpedantic -Werror"
+mod_flags="-fmodules"
+cflags="$error_flags $mod_flags -std=c++20 -stdlib=libc++"
 
 # What flags do we need to generate the pcm files?
 mod_flags="-Xclang -emit-module-interface"
