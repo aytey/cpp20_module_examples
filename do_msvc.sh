@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euvf
+set -euvfx
 
 root=msvc_build
 rm -rf $root
@@ -12,7 +12,7 @@ cd $root
 # What's our compiler + flags?
 cc="wine64 cl.exe"
 error_flags="/W4 /WX"
-mod_flags="/experimental:module"
+mod_flags="/experimental:module /interface"
 cflags="$error_flags $mod_flags /std:c++latest /EHsc /MD"
 
 # How do we track where all of our ifc files are?
@@ -23,9 +23,7 @@ cd mod_moo
 module=moo
 unit=mod_$module
 
-# MSVC needs .ixx
-mv $unit.cpp $unit.ixx
-$cc $cflags $module_paths /c $unit.ixx
+$cc $cflags $module_paths /c $unit.cpp
 
 # Add the current directory to the module search list
 module_paths="$module_paths /ifcSearchDir $(winepath -w $(pwd))"
@@ -37,9 +35,7 @@ cd mod_quack
 module=quack
 unit=mod_$module
 
-# MSVC needs .ixx
-mv $unit.cpp $unit.ixx
-$cc $cflags $module_paths /c $unit.ixx
+$cc $cflags $module_paths /c $unit.cpp
 
 # Add the current directory to the module search list
 module_paths="$module_paths /ifcSearchDir $(winepath -w $(pwd))"

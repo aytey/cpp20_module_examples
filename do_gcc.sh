@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euvf
+set -euvfx
 
 root=gcc_build
 rm -rf $root
