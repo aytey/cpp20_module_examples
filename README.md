@@ -108,6 +108,33 @@ When working with standard library modules in Visual Studio, these are loaded fr
 When working with imported header files in `clang`, these get resolved by the file `/usr/include/c++/v1/module.modulemap` -- *note* this is a `libc++` file!
 
 
+## Potential errors
+
+### MSVC
+
+If you see:
+
+```
+mod_moo.ixx
+mod_moo.ixx(11): fatal error C1011: cannot locate standard module interface. Did you install the library part of the C++ modules feature in VS setup?
+```
+
+then it means you haven't installed MSVC IFC files for the standard library. These can be installed by adding the "C++ Modules for v142 build tools" component to your MSVC install (via the Visual Studio Installer).
+
+### Clang
+
+If you see:
+
+```
+mod_moo.cpp:13:7: fatal error: 'cstdint' file not found
+import<cstdint>;
+      ^~~~~~~~~
+      1 error generated.
+```
+
+then it means you likely haven't installed `libc++-devel` and/or you're not passing `-stdlib=libc++` to `clang`.
+
+
 ## Useful links
 
 * [https://github.com/urnathan/libcody](https://github.com/urnathan/libcody) -- provides the ["canonical protocol definition"](https://gcc.gnu.org/onlinedocs/gcc/C_002b_002b-Module-Mapper.html) for working with GCC's module mapper
@@ -117,4 +144,6 @@ When working with imported header files in `clang`, these get resolved by the fi
 * [https://gitlab.kitware.com/cmake/cmake/-/merge_requests/5562](https://gitlab.kitware.com/cmake/cmake/-/merge_requests/5562) -- implementation of some of C++20's modules into CMake's Ninja back-end
 
 * [https://gitlab.kitware.com/cmake/cmake/-/issues/18355](https://gitlab.kitware.com/cmake/cmake/-/issues/18355) -- issue for CMake's implementation of C++20 modules
+
+* [https://stackoverflow.com/a/67323138](https://stackoverflow.com/a/67323138) -- StackOverflow post discussing creating a customer `clang` `module.modulemap` file to allow for custom named imports (c.f., `gcc`s "module mapper")
 
