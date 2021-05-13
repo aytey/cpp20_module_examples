@@ -112,6 +112,8 @@ When working with imported header files in `clang`, these get resolved by the fi
 
 ### MSVC
 
+#### Not having the standard module interface
+
 If you see:
 
 ```
@@ -121,7 +123,28 @@ mod_moo.ixx(11): fatal error C1011: cannot locate standard module interface. Did
 
 then it means you haven't installed MSVC IFC files for the standard library. These can be installed by adding the "C++ Modules for v142 build tools" component to your MSVC install (via the Visual Studio Installer).
 
+#### Incorrect extension (`.ixx` vs `.cpp`)
+
+If you see:
+
+```
+mod_moo.cpp
+mod_moo.cpp(1): error C3378: a declaration can be exported only from a module interface unit
+mod_moo.cpp(16): error C3378: a declaration can be exported only from a module interface unit
+mod_moo.cpp(16): error C2011: 'Moo': 'class' type redefinition
+mod_moo.cpp(16): note: see declaration of 'Moo'
+```
+
+even though you're sure your unit is correct then you either need to:
+
+1) rename your unit to `<name>.ixx`, such that MSVC automatically treats it as a module interface
+
+2) add `/interface` to your `cl.exe` flags
+
+
 ### Clang
+
+#### No `libc++`
 
 If you see:
 
