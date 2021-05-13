@@ -1,5 +1,17 @@
 import quack;
+
+/*
+ * MSVC does not support 'Imported header files':
+ *
+ *    https://docs.microsoft.com/en-us/cpp/cpp/modules-cpp?view=msvc-160
+ *
+ * So we need to use the 'std' import
+ */
+#if defined(_MSC_VER)
+import std.core;
+#else
 import<iostream>;
+#endif
 
 #if defined(__clang__)
 #define COMPILER "clang"
