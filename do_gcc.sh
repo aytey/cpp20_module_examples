@@ -11,6 +11,8 @@ cd $root
 
 [ -f mapper.txt ] && echo "BAD: mapper.txt exists" && exit 1
 
+[ -f main ] && echo "BAD: main exists" && exit 1
+
 # Path to the mapper file
 mapper=$(readlink -f mapper.txt)
 
@@ -33,8 +35,8 @@ cd ..
 cd mod_moo
 module=moo
 unit=mod_$module
-echo "$module $(readlink -f $unit.so.gcm)" >> ../mapper.txt
-$cc $cflags -x c++ -c $unit.cpp
+echo "$module $(readlink -f $module.so.gcm)" >> ../mapper.txt
+$cc $cflags -c $unit.cpp -o $unit.o
 cd ..
 
 
@@ -42,13 +44,13 @@ cd ..
 cd mod_quack
 module=quack
 unit=mod_$module
-echo "$module $(readlink -f $unit.so.gcm)" >> ../mapper.txt
-$cc $cflags -x c++ -c $unit.cpp
+echo "$module $(readlink -f $module.so.gcm)" >> ../mapper.txt
+$cc $cflags -c $unit.cpp -o $unit.o
 cd ..
 
 
 # Compile main
-$cc $cflags -c main.cpp
+$cc $cflags -c main.cpp -o main.o
 
 # Link everything together
 $cc $cflags mod_moo/mod_moo.o mod_quack/mod_quack.o main.o -o main

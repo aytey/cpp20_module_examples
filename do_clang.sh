@@ -7,6 +7,8 @@ rm -rf $root
 cp -r src $root
 cd $root
 
+[ -f main ] && echo "BAD: main exists" && exit 1
+
 # What's our compiler + flags?
 cc="clang++-12"
 cflags="-Wall -Werror -std=c++20 -stdlib=libc++ -fmodules"
@@ -39,7 +41,7 @@ cd ..
 
 
 # Compile main
-$cc $cflags $module_paths -c main.cpp
+$cc $cflags $module_paths -c main.cpp -o main.o
 
 # Link everything together
 $cc $cflags mod_moo/mod_moo.o mod_quack/mod_quack.o main.o -o main
