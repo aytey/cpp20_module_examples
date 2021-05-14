@@ -158,6 +158,13 @@ import<cstdint>;
 then it means you likely haven't installed `libc++-devel` and/or you're not passing `-stdlib=libc++` to `clang`.
 
 
+## Interesting findings by Andrew
+
+* [https://sourceware.org/bugzilla/show_bug.cgi?id=27865](https://sourceware.org/bugzilla/show_bug.cgi?id=27865) -- `binutils` (as of 75f03fa7743) does not support demangling of C++20 non-`export-ed module functions
+
+* [https://developercommunity.visualstudio.com/t/name-demangling-issue-when-using-c20-modules/1423868](https://developercommunity.visualstudio.com/t/name-demangling-issue-when-using-c20-modules/1423868) -- MSVC (as of 19.28.29915) seems to suggest that non-`export`ed functions are actually within a namespace, after demangling.
+
+
 ## Useful links
 
 * [https://github.com/urnathan/libcody](https://github.com/urnathan/libcody) -- provides the ["canonical protocol definition"](https://gcc.gnu.org/onlinedocs/gcc/C_002b_002b-Module-Mapper.html) for working with GCC's module mapper
