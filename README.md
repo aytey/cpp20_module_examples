@@ -177,3 +177,10 @@ then it means you likely haven't installed `libc++-devel` and/or you're not pass
 
 * [https://stackoverflow.com/a/67323138](https://stackoverflow.com/a/67323138) -- StackOverflow post discussing creating a customer `clang` `module.modulemap` file to allow for custom named imports (c.f., `gcc`s "module mapper")
 
+* [http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p1427r0.pdf](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p1427r0.pdf) -- a 2019 document on "concerns about module toolability" from some "big names" (e.g., Synopsys, CMake)
+
+* [https://vector-of-bool.github.io/2019/01/27/modules-doa.html](https://vector-of-bool.github.io/2019/01/27/modules-doa.html) -- blog post on "C++ Modules Might Be Dead-on-Arrival"
+
+* [https://meetingcpp.com/mcpp/slides/2019/modules-the-beginners-guide-meetingcpp2019.pdf](https://meetingcpp.com/mcpp/slides/2019/modules-the-beginners-guide-meetingcpp2019.pdf) -- the "beginners guide" to modules
+
+
